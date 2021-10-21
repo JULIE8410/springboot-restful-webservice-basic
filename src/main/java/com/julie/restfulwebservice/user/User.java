@@ -1,5 +1,8 @@
 package com.julie.restfulwebservice.user;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -9,6 +12,8 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
+//@JsonIgnoreProperties(value = {"password", "ssn"})  // 필터하고 싶은 프로퍼티 명 기재
+@JsonFilter("UserInfo") // 부여한 UserInfo 값은 컨트롤러나 서비스클래스에서 사용될것임
 public class User {
 
     private Integer id;
@@ -19,4 +24,8 @@ public class User {
     @Past  // 미래날짜 쓸수없게
     private Date joinDate;
 
+//    @JsonIgnore
+    private String password;
+//    @JsonIgnore
+    private String ssn;
 }
