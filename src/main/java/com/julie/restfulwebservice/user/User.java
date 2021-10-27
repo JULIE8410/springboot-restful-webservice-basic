@@ -9,18 +9,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Data
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
 //@JsonIgnoreProperties(value = {"password", "ssn"})  // 필터하고 싶은 프로퍼티 명 기재
 //@JsonFilter("UserInfo") // 부여한 UserInfo 값은 컨트롤러나 서비스클래스에서 사용될것임
 @ApiModel(description = "사용자 상세 정보를 위한 도메인 객체")
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue
     private Integer id;
 
     @Size(min = 2, message = "The name must be at least two characters")
